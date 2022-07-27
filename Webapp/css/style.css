@@ -1,9 +1,6 @@
 /* Background */
 html, body {
-  background-image:url(./background.JPG);
-  background-repeat:no-repeat;
-  background-size:100vw;
-  background-attachment:fixed;
+  background-color:gray;
 }
 
 /***********************************************************************************/
@@ -29,7 +26,7 @@ html, body {
 .loginContainer {
   display:table;
   height:100%;
-  margin: 7vw auto;
+  margin: 2vw auto;
   text-align:center
 }
 .subContainer{
@@ -77,7 +74,7 @@ button {
   background-color: #75b86e;
   border-color: #fff;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: bold;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   
@@ -162,8 +159,8 @@ button:hover {
 /*************************************************************************************/
 
 body {
-    padding-left: 225px;
-    padding-right: 225px;
+    padding-left: 255px;
+    padding-right: 255px;
   }
   
 .container {
