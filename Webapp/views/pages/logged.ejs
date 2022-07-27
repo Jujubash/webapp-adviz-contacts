@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<p class="title">AdViz</p>
+<div class="tab-folder">
+	<div id="main" class="tab-content">
+		<!-- MENU SELECT -->
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login> Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div><br><br>
+
+
+	<div id="map" style="width: 600px; height: 350px;"></div>
+	<script src="script.js"></script><br>
+	<button href=./index.html#main onclick="allContacts()" class="contact-button-pushable" role="button">
+		<span class="contact-button-shadow"></span>
+		<span class="contact-button-edge"></span>
+		<span class="contact-button-front text"> All contacts </span>
+	</button>
+	<button href=./index.html#main onclick="myContacts()" class="contact-button-pushable" role="button">
+		<span class="contact-button-shadow"></span>
+		<span class="contact-button-edge"></span>
+		<span class="contact-button-front text"> My contacts </span>
+	</button>
+	</div><br>
+
+
+<div id="add" class="tab-content">
+	<!-- MENU SELECT -->
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login>Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div><br><br>
+
+	<div class="container">
+		<form action="#">
+			<div class="user-details">
+
+				<div class="input-box">
+					<span class="details">First name &#42;</span>
+					<input type="text" placeholder="Enter your fist name" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Last Name &#42;</span>
+					<input type="text" placeholder="Enter your last name" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Street &#38 Number &#42;</span>
+					<input type="text" placeholder="Enter your street & number" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">ZIP &#42;</span>
+					<input type="text" placeholder="Enter your ZIP" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">City &#42;</span>
+					<input type="text" placeholder="Enter your city" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Country</span>
+					<input type="text" placeholder="Enter your country">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Phone</span>
+					<input type="text" placeholder="Enter your phonenumber">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Day of birth</span>
+					<input type="date" placeholder="Enter your birthday">
+				</div>
+
+			</div>
+
+			<div class="public-or-private-details">
+				<div class="category">
+					<p>Choose:</p>
+					<input type="checkbox" id="private" name="privat" checked>
+					</label for="private">Private &emsp; or &emsp; </label>
+					<input type="checkbox" id="public" name="public">
+					</label for="private">Public</label>
+				</div>
+			</div>
+
+			<div class="add-contact-button">
+				<button class="button">
+					Add contact
+				</button>
+			</div>
+
+			<div class="extra-info">
+				<p> &#42; required field </p>
+			</div>
+		</form>
+	</div><br><br>
+</div>
+
+
+<div id="delete" class="tab-content">
+	<!-- MENU SELECT -->
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login> Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div><br><br>
+	
+	<div class="container">
+		<form action="#">
+			<div class="user-details">
+
+				<div class="input-box">
+					<span class="details">First name &#42;</span>
+					<input type="text" value="Max">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Last Name &#42;</span>
+					<input type="text" value="Mustermann" >
+				</div>
+
+				<div class="input-box">
+					<span class="details">Street &#38 Number &#42;</span>
+					<input type="text" value="Musterstraße 1">
+				</div>
+
+				<div class="input-box">
+					<span class="details">ZIP &#42;</span>
+					<input type="text" value="12345">
+				</div>
+
+				<div class="input-box">
+					<span class="details">City &#42;</span>
+					<input type="text" value="Berlin">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Country</span>
+					<input type="text" value="Deutschland">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Phone</span>
+					<input type="text" value="+49 12312341234">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Day of birth</span>
+					<input type="date" value="2022-01-01" >
+				</div>
+
+			</div>
+
+			<div class="public-or-private-details">
+				<div class="category">
+					<p>Choose:</p>
+					<input type="checkbox" id="private" name="privat" checked>
+					</label for="private">Private &emsp; or &emsp; </label>
+					<input type="checkbox" id="public" name="public">
+					</label for="private">Public</label>
+				</div>
+			</div>
+
+
+			<div class="update-contact-button">
+				<button class="button-update">
+					Update contact
+				</button>
+			</div>
+
+			<div class="delete-contact-button">
+				<button class="button-delete">
+					Delete contact
+				</button>
+			</div>
+
+			<div class="extra-info">
+				<p> &#42; required field </p>
+			</div>
+		</form>
+	</div>
+<br><br>
+</div>
+
+
+<div id="login" class="tab-content">
+	<div class="main_page">
+		<div class="loginContainer">
+			<div class="subContainer">
+				<form id="login" action="./index.html#main" method="post"> 
+					<div class="username">
+						<input type="text" placeholder="username" id="username" required>
+					</div>
+					<div class="password">
+						<input type="password" placeholder="password" id="password" required>
+					</div>
+					<button type="submit" onclick="validateLogin()" class="lhref" href=./index.html#main >login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+<br><br>
+</div>
+
+</div>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>

@@ -3,13 +3,14 @@ const app = express()
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({extended:false}))
+app.use(express.static(__dirname + '/'))
 
 app.get('/main', (req, res) => {
-    res.render('logged.ejs', {name:'username'})
+    res.render('pages/logged.ejs')
 })
 
 app.get('/', (req, res) => {
-    res.render('login.ejs')
+    res.render('pages/login.ejs')
 })
 
 app.listen(3000)
