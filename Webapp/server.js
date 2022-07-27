@@ -13,4 +13,8 @@ app.get('/', (req, res) => {
     res.render('pages/login.ejs')
 })
 
+app.post('/', (req, res) => {
+
+})
+
 app.listen(3000)
