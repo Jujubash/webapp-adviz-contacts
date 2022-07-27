@@ -1,0 +1,7 @@
+#### files to ignore ####
+*._DS.Store
+*.env
+tech.txt
+
+### folders to ignore ###
+*node_modules
