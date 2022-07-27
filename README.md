@@ -13,7 +13,7 @@ This project is from Júlia only, I am doing this for University
 [... or this...](https://www.gutefrage.net/frage/kaese-hat-loecher-mehr-kaese-bedeutet-mehr-loecher-ist-mehr-kaese-weniger-kaese) <br>
 [... maybe this too](https://www.zdf.de/funk/mrwissen2go-geschichte-12024/funk-die-geschichte-des-doeners-102.html) <br>
 Actually I am vegetarian, but memes are memes!
-## Technologies
+### Technologies
 ***
 A list of the complex technologies used within this project:
 * [HTML](https://www.tutorialspoint.com/html/index.htm)
@@ -22,17 +22,17 @@ A list of the complex technologies used within this project:
 Okay, these here are the actual complex technologies, the previous ones were just Kinderkacke:
 * [MongoDB](https://www.mongodb.org)
 * [React](https://www.reactjs.org)
-## Installation
+### Installation
 ***
 Just do it:
 ```
 $ git clone https://example.com
 ```
-## Collaboration
+### Collaboration
 ***
 Don't give instructions on how to collaborate with my project!
 Otherwise it would be a Taeuschungsversuch...
-## FAQs
+### FAQs
 ***
 A list of frequently asked questions
 1. **Why am I coding this?**
