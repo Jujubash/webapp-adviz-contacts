@@ -1,4 +1,8 @@
-# Webapplication project: webapp_adviz_contacts
+Name: da Silva Soares Vetter, Julia <br>
+Matrikel-Nr: 579201 <br>
+Project name: WebApp Adviz <br>
+Project description: Webapplication to add and store contacts with multiple users.<br> <br>
+# Webapplication project: webapp_adviz_contacts <br>
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
@@ -7,26 +11,38 @@
 5. [FAQs](#faqs)
 ### General Info
 ***
-This project is from Júlia only, I am doing this for University
-### Check this out
-[this...](https://www.memedroid.com/memes/detail/2600585/Beans) <br>
-[... or this...](https://www.gutefrage.net/frage/kaese-hat-loecher-mehr-kaese-bedeutet-mehr-loecher-ist-mehr-kaese-weniger-kaese) <br>
-[... maybe this too](https://www.zdf.de/funk/mrwissen2go-geschichte-12024/funk-die-geschichte-des-doeners-102.html) <br>
-Actually I am vegetarian, but memes are memes!
+This project is from Júlia only, I am doing this for University. This webapplication stores, updates, deletes and adds contacts. There are multiple users with different roles.
 ### Technologies
 ***
 A list of the complex technologies used within this project:
-* [HTML](https://www.tutorialspoint.com/html/index.htm)
-* [CSS](https://www.w3schools.com/Css/)
-* [Java Script](https://javascript.info/)
-Okay, these here are the actual complex technologies, the previous ones were just Kinderkacke:
-* [MongoDB](https://www.mongodb.org)
-* [React](https://www.reactjs.org)
+* [HTML](https://dom.spec.whatwg.org/)
+* [CSS](https://www.w3.org/TR/CSS/#css)
+* [Java Script](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+* [MongoDB](https://www.mongodb.com/docs/manual/installation/)
+* [Node JS](https://nodejs.org/en/docs/)
 ### Installation
 ***
 Just do it:
 ```
-$ git clone https://example.com
+$ git clone https://github.com/Jujubash/webapp_adviz_contacts.git
+```
+After it install all necessary libraries and packages to be able to run it. Please enter as follows:
+```
+npm i express ejs
+```
+```
+npm i --save-dev nodemon dotenv
+```
+
+
+
+Now run the webapplication with this command:
+```
+npm run devStart
+```
+It will be running locally in any browser or [Postman](https://www.postman.com/) in this port:
+```
+localhost:3000 
 ```
 ### Collaboration
 ***
