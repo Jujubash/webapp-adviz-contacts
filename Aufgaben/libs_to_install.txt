@@ -1,0 +1,4 @@
+
+npm i express ejs
+
+npm i --save-dev nodemon dotenv
