@@ -1,7 +1,15 @@
 #### files to ignore ####
-*._DS.Store
-*.env
-tech.txt
+# *._DS.Store
+# *.env
+# tech.txt
+# libs_to_install.txt
 
 ### folders to ignore ###
-*node_modules
+# *node_modules
+
+
+################################################################
+# in real situations the files ad folders would not be         #
+# commented, but here it will to be able to make others        #
+# be available to run this webapp AdViz.                       #
+################################################################

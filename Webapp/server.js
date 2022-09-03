@@ -7,12 +7,11 @@ const app = express()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
-const flash = require('express-session')
+const session = require('express-session')
 
 const users = []
 
 const initializePassport = require('./pass.js')
-const { session } = require('passport')
 initializePassport(
     passport,
     username => users.find(user => user.username === username)

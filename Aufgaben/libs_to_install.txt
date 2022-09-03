@@ -2,3 +2,7 @@
 npm i express ejs
 
 npm i --save-dev nodemon dotenv
+
+npm i bcrypt
+
+npm i passport passport-local express-session express-flash
