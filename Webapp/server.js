@@ -9,13 +9,17 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 
-const users = []
-
-const initializePassport = require('./pass.js')
+const initializePassport = require('./pass')
 initializePassport(
     passport,
-    username => users.find(user => user.username === username)
+    username => users.find(user => user.username === username),
+    id => users.find(user => user.id === id) // TODO: Remove this later???
 )
+
+let users = [
+    admina = {username: "admina", password: "password", role:"admin"},
+    normalo = {username: "normalo", password: "password", role:"normal"}
+]
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({extended:false}))

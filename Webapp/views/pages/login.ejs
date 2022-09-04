@@ -11,6 +11,9 @@
 	<div class="main_page">
 		<div class="loginContainer">
 			<div class="subContainer">
+				<% if (messages.error) { %>
+					<%= messages.error %>
+				<% } %>
 				<form id="login" action="/login" method="POST"> 
 					<div class="username">
 						<input type="text" placeholder="username" id="username" required>
