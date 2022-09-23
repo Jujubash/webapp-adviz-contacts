@@ -4,7 +4,7 @@
 </head>
 
 <h1>Hello <%= username  %></h1>
-<!--
+
 <p class="title">AdViz</p>
 <div class="tab-folder">
 	<div id="main" class="tab-content">
@@ -17,13 +17,13 @@
 
 
 	<div id="map" style="width: 600px; height: 350px;"></div>
-	<script src="script.js"></script><br>
-	<button href=./index.html#main onclick="allContacts()" class="contact-button-pushable" role="button">
+	<script src="server.js"></script><br>
+	<button href=./index.html#main onclick="viewList()" class="contact-button-pushable" role="button">
 		<span class="contact-button-shadow"></span>
 		<span class="contact-button-edge"></span>
 		<span class="contact-button-front text"> All contacts </span>
 	</button>
-	<button href=./index.html#main onclick="myContacts()" class="contact-button-pushable" role="button">
+	<button href=./index.html#main onclick="viewList()" class="contact-button-pushable" role="button">
 		<span class="contact-button-shadow"></span>
 		<span class="contact-button-edge"></span>
 		<span class="contact-button-front text"> My contacts </span>
@@ -215,7 +215,7 @@
 </div>
 
 </div>
--->
+
 
 <footer>
     <%- include('../partials/footer'); %>

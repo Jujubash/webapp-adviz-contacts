@@ -1,20 +1,16 @@
-if (process.env.NODE_ENV !== 'production' ) {
-    require('dotenv').config()
+/* Some configs for the map to show up */
+let mapOptions = {
+	center:[52.5170365, 13.3888599],
+	zoom:10.5
 }
+let map = new L.map('map' , mapOptions);
+let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+map.addLayer(layer);
 
-const express =  require('express')
-const app = express()
-const bcrypt = require('bcrypt')
-const passport = require('passport')
-const flash = require('express-flash')
-const session = require('express-session')
-const initializePassport = require('./pass')
-const { initialize } = require('passport')
-
-/* hard coded users */
+/* Hard coded Log-in Admina and Normalo */
 let admina = {username: "admina", password: "password", role: "admin"};
 let normalo = {username: "normalo", password: "password", role: "normal"};
-const users = [admina, normalo]
+let couple = [admina, normalo]
 
 /* Function to validate Login Data */
 function validateLogin() {
@@ -28,7 +24,7 @@ function validateLogin() {
 			alert("Login successfully! Hello " + username);
 			currentUser = logged_user;
 			login_user(username);
-			initMap();
+			setmap();
 			viewList();
 			return // return false ??? TODO
 		}
@@ -52,17 +48,6 @@ function viewList() {
     }
 }
 
-/* initialize map */
-function initMap() {
-    let mapOptions = {
-	    center:[52.5170365, 13.3888599],
-	    zoom:10.5
-    }
-    let map = new L.map('map' , mapOptions);
-    let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-    map.addLayer(layer);
-}
-
 /* Function to reset the list of contacts */
 function resetList() {
     document.getElementById("contactsTable").innerHTML = ""
@@ -84,41 +69,3 @@ function allContacts() {
 	let contactNormalo2 = {name: "Rick", surname:"Sanchez", visibility: "private"}
 	L.marker([52.4744192, 13.4026007]).addTo(map).bindPopup(title="Rick Sanchez");
 }
-
-/* server from here until the end of code */
-initializePassport(
-    passport,
-    username => users.find(user => users.username === username),
-    role => users.find(user => users.role === role)
-)
-
-app.set('view-engine', 'ejs')
-app.use(express.urlencoded({extended:false}))
-app.use(express.static(__dirname + '/'))
-app.use(flash())
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUnitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-
-/* GOTO: login page */
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render('pages/login.ejs', { username: req.user.name})
-})
-
-/* GOTO: logged in page */
-app.get('/main', (req, res) => {
-    res.render('pages/logged.ejs')
-})
-
-/* GOTO: decide through authentication */
-app.post('/', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: '/',
-    failureFlash: true
-}))
-
-app.listen(3000)
