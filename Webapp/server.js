@@ -9,12 +9,12 @@ let admina = {username: "admina", password: "password", role: "admin"};
 let normalo = {username: "normalo", password: "password", role: "normal"};
 let users = [admina, normalo]
 
-// Route to Homepage
+/* GOTO: Homepage */
 app.get('/main', (req, res) => {
   res.sendFile(__dirname + '/static/main.html');
 });
 
-// Route to Login Page
+/* GOTO: Login Page */
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/static/index.html');
 });
