@@ -8,48 +8,87 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
-const initializePassport = require('./pass')
-const { initialize } = require('passport')
+const methodOverride = require('method-override')
 
-/* hard coded users */
+/* server part 1/2: start */
+const initializePassport = require('./pass')
+initializePassport(
+    passport,
+    username => users.find(user => users.username === username),
+    role => users.find(user => users.role === role)
+)
+
+/* server part 2/2: from here until end */
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.use(express.urlencoded({extended:false}))
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUnitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
+/* GOTO: login page */
+app.get('/', checkAuthenticated, (req, res) => {
+    res.render("pages/login", { username: req.user.name})
+})
+
+/* GOTO: logged in page */
+app.get('/main', checkNotAuthenticated, (req, res) => {
+    res.render("pages/logged")
+})
+
+/* GOTO: decide through authentication */
+app.post('/', passport.authenticate('local', {
+    successRedirect: '/main',
+    failureRedirect: '/',
+    failureFlash: true
+}))
+
+app.delete('/logout', (req, res) => {
+    req.logOut()
+    res.redirect('/')
+  })
+  
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/')
+  }
+  
+  function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/main')
+    }
+    next()
+  } /* end server */
+
+  /* hard coded users */
 let admina = {username: "admina", password: "password", role: "admin"};
 let normalo = {username: "normalo", password: "password", role: "normal"};
-const users = [admina, normalo]
+let users = [admina, normalo]
 
 /* Function to validate Login Data */
 function validateLogin() {
-	// OLD CODE TO LOGIN:
-	let username = document.getElementById("user").value;
+	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-
-	for (let logged_user of couple) {
 	
-		if (username == logged_user.username && password == logged_user.password) {
-			alert("Login successfully! Hello " + username);
-			currentUser = logged_user;
-			login_user(username);
-			initMap();
-			viewList();
-			return // return false ??? TODO
-		}
-		else if(username == normalo.username && password == normalo.password) {
-			alert("Login successfully! Hello " + username);
-			return
-		}
-		else {
-		alert("Login failed! Wrong username or password!")
-		}
+    if (username == logged_user.username && password == logged_user.password) {
+		alert("Login successfully! Hello " + username);
+		currentUser = logged_user;
+	    login_user(username);
+		initMap();
+		viewList();
+		return
 	}
-	document.getElementById("loginFailed").style.display = "block";
-	return false
-}
-
-/* Function to view the list of contacts */
-function viewList() {
-    resetList()
-    for (let i = 0; i < contactBook[currentUser['username']].length; i++) {
-        viewList(contactBook[currentUser['username']][i], i, currentUser['username'])
-    }
+	else {
+		alert("Login failed! Wrong username or password!")
+	}
 }
 
 /* initialize map */
@@ -61,6 +100,14 @@ function initMap() {
     let map = new L.map('map' , mapOptions);
     let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
     map.addLayer(layer);
+}
+
+/* Function to view the list of contacts */
+function viewList() {
+    resetList()
+    for (let i = 0; i < allContacts()[currentUser['username']].length; i++) {
+        viewList(contactBook[currentUser['username']][i], i, currentUser['username'])
+    }
 }
 
 /* Function to reset the list of contacts */
@@ -85,40 +132,6 @@ function allContacts() {
 	L.marker([52.4744192, 13.4026007]).addTo(map).bindPopup(title="Rick Sanchez");
 }
 
-/* server from here until the end of code */
-initializePassport(
-    passport,
-    username => users.find(user => users.username === username),
-    role => users.find(user => users.role === role)
-)
-
-app.set('view-engine', 'ejs')
-app.use(express.urlencoded({extended:false}))
-app.use(express.static(__dirname + '/'))
-app.use(flash())
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUnitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-
-/* GOTO: login page */
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render('pages/login.ejs', { username: req.user.name})
+app.listen(3000, () =>{
+    console.log("listten on port: 3000")
 })
-
-/* GOTO: logged in page */
-app.get('/main', (req, res) => {
-    res.render('pages/logged.ejs')
-})
-
-/* GOTO: decide through authentication */
-app.post('/', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: '/',
-    failureFlash: true
-}))
-
-app.listen(3000)

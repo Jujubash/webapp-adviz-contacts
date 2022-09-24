@@ -1,11 +1,24 @@
-npm install express
+_________________________________________________________________
 
-npm install bcrypt
-
-npm i express ejs
-
-npm i --save-dev nodemon dotenv
+npm i express
 
 npm i bcrypt
 
+npm i ejs
+
+npm i --save-dev nodemon dotenv
+
 npm i passport passport-local express-session express-flash
+
+npm i method-override
+
+_________________________________________________________________
+
+ALL AT ONCE:
+
+npm i --save-dev nodemon dotenv
+
+npm i express bcrypt express-session ejs passport-local express-session express-flash method-override
+
+_________________________________________________________________
+
