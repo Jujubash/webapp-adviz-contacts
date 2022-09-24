@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <link rel="stylesheet" href="/styles.css" type="text/css"> 
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+	
+<style>
+/************************************ Main Page ************************************/
+.mainContainer {
+  display:table;
+  height:100%;
+  margin: 0 auto;
+  text-align:center
+}
+
+.lhref {
+  text-decoration:none;
+  font-size:large;
+  font-weight:bold;
+  color: #5d5757;
+}
+
+/* Logout Button */
+.loginContainer {
+  text-decoration:none;
+}
+
+.outref {
+  text-decoration:none;
+  color:#d6d5d5;
+  font-size:large;
+  font-weight:bold;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#map{
+  width: 100%;
+  height: 100vh;
+}
+
+.leaflet-popup-content {
+  margin: 5px;
+}
+
+.leaflet-container {
+  height: 400px;
+  width: 600px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card {
+  width: 250px;
+  display: flex;
+  align-items: center;
+}
+.card img{
+  display: block;
+  margin-right: 10px;
+  border-radius: 5px 0 0 5px;
+  -moz-border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 5px 0 0 5px;
+}
+
+/* Responsive Screens */
+@media screen and (max-width:300px){ }
+@media screen and (min-width:301px) and (max-width:399px) { }
+@media screen and (min-width:400px) and (max-width:699px) { }
+@media screen and (min-width:700px) { }
+
+/************************************ Add Contact ************************************/
+
+body {
+    padding-left: 255px;
+    padding-right: 255px;
+  }
+  
+.container {
+  max-width: 700px;
+  width: 700px;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.container .title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  font-weight: 500;
+  position: relative;
+  color: black;
+}
+
+.container form .user-details {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  margin: 20px 0 5px 0;
+}
+
+form .user-details .input-box {
+  margin-bottom: 15px ;
+  width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  height: 45px;
+  width: 100%;
+  outline-color: none;
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  padding-left: 15px;
+  font-size: 16px;
+}
+
+form .public-or-private-details .access-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+form .public-or-private-details .category {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display:block;
+  width: 80%;
+  margin: 14px 0;
+  justify-content:space-between;
+}
+
+form .admin-normalo {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  position: relative;
+  display: inline-block;
+}
+
+form .admin-normalo .dropdown-owner-contact {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 135px;
+  height: 30px;
+  cursor: pointer;
+  
+}
+
+form .admin-normalo .dropdown-owner-contact:hover {
+  background-color: #f4f8f4;
+}
+
+form .button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 10px 0;
+  display: inline-block;
+  color: black;
+  cursor: pointer;
+  background-color: #75b86e;
+  border-color: #fff;
+  border-radius: 5px;
+}
+
+form .button:hover {
+  background-color: #bcd0ba;
+}
+
+form .button:active {
+  opacity: 0.7;
+}
+
+form .extra-info {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: smaller;
+}
+
+/****************************** Update / Delete Contact ******************************/
+
+body {
+  padding-left: 225px;
+  padding-right: 225px;
+}
+
+.container {
+max-width: 700px;
+width: 700px;
+background: #fff;
+padding: 25px 30px;
+border-radius: 5px;
+}
+
+.container .title {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 25px;
+font-weight: bold;
+font-weight: 500;
+position: relative;
+color: black;
+}
+
+.container .title::before {
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+height: 3px;
+width: 133px;
+background: linear-gradient(135deg, #75b86e, #6cdae1);
+}
+
+.container form .user-details {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+display: flex;
+flex-wrap: wrap;
+justify-content:space-between;
+margin: 20px 0 5px 0;
+}
+
+form .user-details .input-box {
+margin-bottom: 15px ;
+width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details {
+display: block;
+font-weight: 500;
+margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+height: 45px;
+width: 100%;
+outline-color: none;
+border-radius: 5px;
+border: 1px solid rgb(204, 204, 204);
+padding-left: 15px;
+font-size: 16px;
+}
+
+form .public-or-private-details .access-title {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 20px;
+font-weight: 500;
+}
+
+form .public-or-private-details .category {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+display:block;
+width: 80%;
+margin: 14px 0;
+justify-content:space-between;
+}
+
+form .admin-normalo {
+padding-top: 15px;
+padding-bottom: 15px;
+padding-left: 0px;
+padding-right: 0px;
+position: relative;
+display: inline-block;
+}
+
+form .admin-normalo .dropdown-owner-contact {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+width: 135px;
+cursor: pointer;
+font-size: 15px;
+}
+
+form .admin-normalo .dropdown-owner-contact:hover {
+background-color: #ddd7d7;
+}
+
+form .button-update {
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 30px;
+padding-right: 30px;
+font-weight: bold;
+font-size: 15px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+margin: 10px 0;
+display: inline-block;
+color: black;
+cursor: pointer;
+background-color: #daab46;
+border-color: #fff;
+border-radius: 5px;
+}
+
+form .button-update:hover {
+background-color: #ddcd8d;
+}
+
+form .button-update:active {
+opacity: 0.7;
+}
+
+form .button-delete {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 10px 0;
+  display: inline-block;
+  color: black;
+  cursor: pointer;
+  background-color: #bb3f05;
+  border-color: #fff;
+  border-radius: 5px;
+  }
+  
+  form .button-delete:hover {
+  background-color: #cea39f;
+  }
+  
+  form .button-delete:active {
+  opacity: 0.7;
+  }
+
+form .extra-info {
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: smaller;
+}
+
+/************************************* Buttons *************************************/
+
+/* See all/my contacts button */
+.contact-button-pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  width:20%;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 2px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.contact-button-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.contact-button-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+
+.contact-button-front {
+  display: block;
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 70%;
+  color: white;
+  background: rgb(229, 166, 182);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.contact-button-pushable:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.contact-button-pushable:hover .contact-button-front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.contact-button-pushable:active .contact-button-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.contact-button-pushable:hover .contact-button-shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.contact-button-pushable:active .contact-button-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.contact-button-pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tab-folder > .tab-content:target ~ .tab-content:last-child, .tab-folder > .tab-content{display:none;text-decoration:none;}.tab-folder > :last-child, .tab-folder > .tab-content:target{display:block;}
+
+</style>
+</head>
+<body>
+
+<p class="title">AdViz</p>
+<div class="tab-folder">
+	<div id="main" class="tab-content">
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login> Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div><br><br>
+
+
+	<div id="map" style="width: 600px; height: 350px;"></div>
+	<script src="server.js"></script><br>
+	<button href=./index.html#main onclick="viewList()" class="contact-button-pushable" role="button">
+		<span class="contact-button-shadow"></span>
+		<span class="contact-button-edge"></span>
+		<span class="contact-button-front text"> All contacts </span>
+	</button>
+	<button href=./index.html#main onclick="viewList()" class="contact-button-pushable" role="button">
+		<span class="contact-button-shadow"></span>
+		<span class="contact-button-edge"></span>
+		<span class="contact-button-front text"> My contacts </span>
+	</button>
+	</div><br>
+
+
+<div id="add" class="tab-content">
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login>Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div> <br><br>
+
+	<div class="container">
+		<form action="#">
+			<div class="user-details">
+
+				<div class="input-box">
+					<span class="details">First name &#42;</span>
+					<input type="text" placeholder="Enter your fist name" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Last Name &#42;</span>
+					<input type="text" placeholder="Enter your last name" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Street &#38 Number &#42;</span>
+					<input type="text" placeholder="Enter your street & number" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">ZIP &#42;</span>
+					<input type="text" placeholder="Enter your ZIP" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">City &#42;</span>
+					<input type="text" placeholder="Enter your city" required>
+				</div>
+
+				<div class="input-box">
+					<span class="details">Country</span>
+					<input type="text" placeholder="Enter your country">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Phone</span>
+					<input type="text" placeholder="Enter your phonenumber">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Day of birth</span>
+					<input type="date" placeholder="Enter your birthday">
+				</div>
+
+			</div>
+
+			<div class="public-or-private-details">
+				<div class="category">
+					<p>Choose:</p>
+					<input type="checkbox" id="private" name="privat" checked>
+					</label for="private">Private &emsp; or &emsp; </label>
+					<input type="checkbox" id="public" name="public">
+					</label for="private">Public</label>
+				</div>
+			</div>
+
+			<div class="add-contact-button">
+				<button class="button">
+					Add contact
+				</button>
+			</div>
+
+			<div class="extra-info">
+				<p> &#42; required field </p>
+			</div>
+		</form>
+	</div> <br><br>
+</div>
+
+
+<div id="delete" class="tab-content">
+	<div id="haddaway" class="menuselect">
+		<a class="lhref" href=#login> Login</a> &emsp;&emsp;
+		<a class="lhref" href=#main>Main Menu&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#add>Add Contact&emsp;</a> &emsp;&emsp;
+		<a class="lhref" href=#delete>Change Contact&emsp;</a> &emsp;&emsp;
+	</div><br><br>
+	
+	<div class="container">
+		<form action="#">
+			<div class="user-details">
+
+				<div class="input-box">
+					<span class="details">First name &#42;</span>
+					<input type="text" value="Max">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Last Name &#42;</span>
+					<input type="text" value="Mustermann" >
+				</div>
+
+				<div class="input-box">
+					<span class="details">Street &#38 Number &#42;</span>
+					<input type="text" value="Musterstraße 1">
+				</div>
+
+				<div class="input-box">
+					<span class="details">ZIP &#42;</span>
+					<input type="text" value="12345">
+				</div>
+
+				<div class="input-box">
+					<span class="details">City &#42;</span>
+					<input type="text" value="Berlin">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Country</span>
+					<input type="text" value="Deutschland">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Phone</span>
+					<input type="text" value="+49 12312341234">
+				</div>
+
+				<div class="input-box">
+					<span class="details">Day of birth</span>
+					<input type="date" value="2022-01-01" >
+				</div>
+
+			</div>
+
+			<div class="public-or-private-details">
+				<div class="category">
+					<p>Choose:</p>
+					<input type="checkbox" id="private" name="privat" checked>
+					</label for="private">Private &emsp; or &emsp; </label>
+					<input type="checkbox" id="public" name="public">
+					</label for="private">Public</label>
+				</div>
+			</div>
+
+
+			<div class="update-contact-button">
+				<button class="button-update">
+					Update contact
+				</button>
+			</div>
+
+			<div class="delete-contact-button">
+				<button class="button-delete">
+					Delete contact
+				</button>
+			</div>
+
+			<div class="extra-info">
+				<p> &#42; required field </p>
+			</div>
+		</form>
+	</div> <br><br>
+</div>
+
+
+<div id="login" class="tab-content">
+	<div class="main_page">
+		<div class="loginContainer">
+			<div class="subContainer">
+				<form id="login" action="./index.html#main" method="post"> 
+					<div class="username">
+						<input type="text" placeholder="username" id="username" required>
+					</div>
+					<div class="password">
+						<input type="password" placeholder="password" id="password" required>
+					</div>
+					<button type="submit" onclick="validateLogin()" class="lhref" href=./index.html#main >login</button>
+				</form>
+			</div>
+		</div>
+	</div> <br><br>
+</div>
+</div>
+
+</body>
+</html>

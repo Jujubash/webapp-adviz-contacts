@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+
+<style>
+
+html, body {
+  background-color:gray;
+}
+
+/************************************ Login Page ************************************/
+
+/* Page Name */
+.title {
+  margin: 3vw 3vw;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-variant: normal;
+  color: #5d5757;
+}
+
+.menuselect{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+/* Login Box */
+.loginContainer {
+  display:table;
+  height:100%;
+  margin: 2vw auto;
+  text-align:center
+}
+.subContainer{
+  display:table-cell;
+  vertical-align:middle;  
+}
+
+.subContainer #login {
+  background:#ffffff;
+  border-radius: 5px;
+  padding:3vw; 
+  width:20vw;  /*  your login form width */
+}
+
+/* User Password Boxes */
+label[for=username], label[for=password] {
+  width: 70%;
+  display: inline-block; 
+  border: none;
+  box-sizing: border-box;
+  color: #000000;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input[type=text], input[type=password] {
+  width: 70%;
+  margin: 8px 0;
+  padding: 1vw 1vw;
+  display: inline-block; 
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #000000;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+}
+
+/* Login Button */
+button {
+  color: rgb(0, 0, 0);
+  padding: 1vw 1vw;
+  margin: 1vw 0;
+  cursor: pointer;
+  width: 50%;
+  background-color: #75b86e;
+  border-color: #fff;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+}
+
+button:hover {
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<p class="title">AdViz</p>
+<div id="main" class="tab-content">
+
+<div id="login" class="tab-content">
+	<div class="main_page">
+		<div class="loginContainer">
+			<div class="subContainer">
+				<form id="login" action="/" method="POST"> 
+					<div class="username"> <input type="text" placeholder="username" id="username" required> </div>
+					<div class="password"> <input type="password" placeholder="password" id="password" required> </div>
+					<button type="submit" onclick=validateLogin() class="lhref" href="/main.html">login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

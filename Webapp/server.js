@@ -2,24 +2,24 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: false }));
+
+/* hard coded users */
+let admina = {username: "admina", password: "password", role: "admin"};
+let normalo = {username: "normalo", password: "password", role: "normal"};
+let users = [admina, normalo]
 
 // Route to Homepage
 app.get('/main', (req, res) => {
-  res.sendFile(__dirname + '/main.html');
+  res.sendFile(__dirname + '/static/main.html');
 });
 
 // Route to Login Page
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/static/index.html');
 });
 
 app.post('/', (req, res) => {
-  /* hard coded users */
-  let admina = {username: "admina", password: "password", role: "admin"};
-  let normalo = {username: "normalo", password: "password", role: "normal"};
-  let users = [admina, normalo]
   res.send(`Username: ${users.username} Password: ${users.password}`);
 });
 
