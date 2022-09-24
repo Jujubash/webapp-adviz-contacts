@@ -1,77 +1,27 @@
-if (process.env.NODE_ENV !== 'production' ) {
-    require('dotenv').config()
-}
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+app.set('view engine', 'jade');
 
-const express =  require('express')
-const app = express()
-const bcrypt = require('bcrypt')
-const passport = require('passport')
-const flash = require('express-flash')
-const session = require('express-session')
-const methodOverride = require('method-override')
+app.use(bodyParser.urlencoded({ extended: false }));
 
-/* server part 1/2: start */
-const initializePassport = require('./pass')
-initializePassport(
-    passport,
-    username => users.find(user => users.username === username),
-    role => users.find(user => users.role === role)
-)
+// Route to Homepage
+app.get('/main', (req, res) => {
+  res.render('main');
+});
 
-/* server part 2/2: from here until end */
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-app.use(express.urlencoded({extended:false}))
-app.use(flash())
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUnitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(methodOverride('_method'))
+// Route to Login Page
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
-/* GOTO: login page */
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render("pages/login", { username: req.user.name})
-})
-
-/* GOTO: logged in page */
-app.get('/main', checkNotAuthenticated, (req, res) => {
-    res.render("pages/logged")
-})
-
-/* GOTO: decide through authentication */
-app.post('/', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: '/',
-    failureFlash: true
-}))
-
-app.delete('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/')
-  })
-  
-  function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next()
-    }
-    res.redirect('/')
-  }
-  
-  function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return res.redirect('/main')
-    }
-    next()
-  } /* end server */
-
+app.post('/login', (req, res) => {
   /* hard coded users */
-let admina = {username: "admina", password: "password", role: "admin"};
-let normalo = {username: "normalo", password: "password", role: "normal"};
-let users = [admina, normalo]
+  let admina = {username: "admina", password: "password", role: "admin"};
+  let normalo = {username: "normalo", password: "password", role: "normal"};
+  let users = [admina, normalo]
+  res.send(`Username: ${username} Password: ${password}`);
+});
 
 /* Function to validate Login Data */
 function validateLogin() {
@@ -132,6 +82,6 @@ function allContacts() {
 	L.marker([52.4744192, 13.4026007]).addTo(map).bindPopup(title="Rick Sanchez");
 }
 
-app.listen(3000, () =>{
-    console.log("listten on port: 3000")
-})
+/* listening on port number */
+const port = 3000
+app.listen(port, () => console.log(`This app is listening on port ${port}`));
