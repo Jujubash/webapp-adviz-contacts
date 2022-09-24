@@ -1,26 +1,26 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-app.set('view engine', 'jade');
 
+app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Route to Homepage
 app.get('/main', (req, res) => {
-  res.render('main');
+  res.sendFile(__dirname + '/main.html');
 });
 
 // Route to Login Page
 app.get('/', (req, res) => {
-  res.render('index');
+  res.sendFile(__dirname + '/index.html');
 });
 
-app.post('/login', (req, res) => {
+app.post('/', (req, res) => {
   /* hard coded users */
   let admina = {username: "admina", password: "password", role: "admin"};
   let normalo = {username: "normalo", password: "password", role: "normal"};
   let users = [admina, normalo]
-  res.send(`Username: ${username} Password: ${password}`);
+  res.send(`Username: ${users.username} Password: ${users.password}`);
 });
 
 /* Function to validate Login Data */
