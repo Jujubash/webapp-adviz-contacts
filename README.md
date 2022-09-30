@@ -28,14 +28,17 @@ $ git clone https://github.com/Jujubash/webapp_adviz_contacts.git
 ```
 After it install all necessary libraries and packages to be able to run it. Please enter as follows:
 ```
-npm i express ejs
+npm i express express-session express-flash
 ```
 ```
 npm i --save-dev nodemon dotenv
 ```
 
 
-
+Go to the folder with the code by doing:
+```
+cd ./Webapp
+```
 Now run the webapplication with this command:
 ```
 npm run devStart
