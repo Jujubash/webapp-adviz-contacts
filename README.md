@@ -4,6 +4,7 @@ Project name: WebApp Adviz <br>
 Project description: Webapplication to add and store contacts with multiple users.<br> <br>
 # Webapplication project: webapp_adviz_contacts <br>
 ## Table of Contents
+![Alt text](./Aufgaben/mylifememe.jpg?raw=true "Title")
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
 3. [Installation](#installation)
