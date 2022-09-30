@@ -1,25 +1,3 @@
-_________________________________________________________________
 
-npm i express
-
-npm i bcrypt
-
-npm i ejs
-
+npm i express express-session express-flash
 npm i --save-dev nodemon dotenv
-
-npm i passport passport-local express-session express-flash
-
-npm i method-override
-
-_________________________________________________________________
-
-ALL AT ONCE:
-
-npm i --save-dev nodemon dotenv
-
-npm i express bcrypt express-session ejs passport-local express-session express-flash method-override
-
-_________________________________________________________________
-
-npm install jade --save

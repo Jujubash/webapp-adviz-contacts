@@ -4,15 +4,17 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-/* hard coded users */
-let admina = {username: "admina", password: "password", role: "admin"};
-let normalo = {username: "normalo", password: "password", role: "normal"};
-let users = [admina, normalo]
-
 /* GOTO: Homepage */
 app.get('/main', (req, res) => {
   res.sendFile(__dirname + '/main.html');
 });
+
+app.post('/main',function(req,res){
+	var username = req.body.username;
+	var htmlData = 'Hello:' + username;
+	res.send(htmlData);
+	console.log(htmlData);
+ });
 
 /* GOTO: Login Page */
 app.get('/', (req, res) => {
@@ -21,25 +23,8 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   res.send(`Username: ${users.username} Password: ${users.password}`);
+  res.render('main.html');
 });
-
-/* Function to validate Login Data */
-function validateLogin() {
-	let username = document.getElementById("username").value;
-	let password = document.getElementById("password").value;
-	
-    if (username == logged_user.username && password == logged_user.password) {
-		alert("Login successfully! Hello " + username);
-		currentUser = logged_user;
-	    login_user(username);
-		initMap();
-		viewList();
-		return
-	}
-	else {
-		alert("Login failed! Wrong username or password!")
-	}
-}
 
 /* initialize map */
 function initMap() {

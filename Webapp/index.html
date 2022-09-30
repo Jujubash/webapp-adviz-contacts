@@ -4,7 +4,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
-  <script type="text/javascript" src="server.js"></script>
 <style>
 
 html, body {
@@ -92,23 +91,51 @@ button:hover {
 </style>
 </head>
 <body>
+  <p class="title">AdViz</p>
+  <div id="main" class="tab-content">
+    <div id="login" class="tab-content">
+	    <div class="main_page">
+		    <div class="loginContainer">
+			    <div class="subContainer">
+            <form onsubmit="return validateLogin()" id="login">
+					    <div class="username">
+                <input type="text" placeholder="username" id="username" required>
+              </div>
+					    <div class="password">
+                <input type="password" placeholder="password" id="password" required>
+              </div>
+              <button type="submit" value="Login">login</button>
+				    </form>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+  </div>
 
-<p class="title">AdViz</p>
-<div id="main" class="tab-content">
+<script>
+/* hard coded users */
+let admina = {username: "admina", password: "password", role: "admin"};
+let normalo = {username: "normalo", password: "password", role: "normal"};
 
-<div id="login" class="tab-content">
-	<div class="main_page">
-		<div class="loginContainer">
-			<div class="subContainer">
-				<form id="login" method="POST"> 
-					<div class="username"> <input type="text" placeholder="username" id="username" required> </div>
-					<div class="password"> <input type="password" placeholder="password" id="password" required> </div>
-					<button type="submit" onclick=validateLogin() class="lhref" href="/main.html">login</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
+/* Function to validate Login Data */
+function validateLogin() {
+	let username = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
+  let logged_user = {username, password};
+	
+    if (username == logged_user.username && password == logged_user.password) {
+		alert("Login successfully! Hello " + username);
+		currentUser = logged_user;
+	    login_user(username);
+		initMap();
+		viewList();
+		return
+	}
+	else {
+		alert("Login failed! Wrong username or password!")
+	}
+}
+</script>
+
 </body>
 </html>
