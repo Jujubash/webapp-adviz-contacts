@@ -11,12 +11,12 @@ let users = [admina, normalo]
 
 /* GOTO: Homepage */
 app.get('/main', (req, res) => {
-  res.sendFile(__dirname + '/static/main.html');
+  res.sendFile(__dirname + '/main.html');
 });
 
 /* GOTO: Login Page */
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/static/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.post('/', (req, res) => {
