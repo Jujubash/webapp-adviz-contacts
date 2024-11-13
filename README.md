@@ -1,5 +1,3 @@
-Name: da Silva Soares Vetter, Julia <br>
-Matrikel-Nr: 579201 <br>
 Project name: WebApp Adviz <br>
 Project description: Webapplication to add and store contacts with multiple users.<br> <br>
 # Webapplication project: webapp_adviz_contacts <br>
